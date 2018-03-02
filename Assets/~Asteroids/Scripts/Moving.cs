@@ -14,8 +14,6 @@ using UnityEngine;
 // Level 2 - Functions and Variables
 // Level 3 - Statements
 
-
-
 namespace Asteroids
 {
     public class Moving : MonoBehaviour
