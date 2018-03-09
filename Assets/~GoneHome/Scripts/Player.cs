@@ -8,13 +8,17 @@ namespace GoneHome
     {
         public float acceleration = 10f;
         public float maxVelocity = 10f;
-        
+        public GameObject deathParticles;
+
         private Rigidbody rigid;
+        private Vector3 spawnPoint;
 
         // Use this for initialization
         void Start()
         {
             rigid = GetComponent<Rigidbody>();
+
+            spawnPoint = transform.position;
         }
 
         // Update is called once per frame
@@ -30,19 +34,32 @@ namespace GoneHome
             Transform cam = Camera.main.transform;
             inputDir = Quaternion.AngleAxis(cam.eulerAngles.y, Vector3.up) * inputDir;
 
+            // Add force to Player
             rigid.AddForce(inputDir * acceleration);
 
             Vector3 vel = rigid.velocity;
+            // Check if velocity is too high
             if (vel.magnitude > maxVelocity)
             {
+                // Cap the velocity
                 vel = vel.normalized * maxVelocity;
             }
-
-            if(inputH == 0 && inputV == 0)
-            {
-                vel = vel.normalized * 0;
-            }
+            // Apply the velocity
             rigid.velocity = vel;
+        }
+
+        // Fold Code: CTRL + M + O
+        // Un-Fold Code: CTRL + M + P
+
+        // Resets the player's settings when run
+        public void Reset()
+        {
+            // Play Explosion Particles
+            GameObject clone = Instantiate(deathParticles);
+            clone.transform.position = transform.position;
+            // Reset player's position to start position
+            transform.position = spawnPoint;
+            // Reset player's velocity
         }
     }
 }
