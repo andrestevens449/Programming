@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.02.14" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="204">
+<map version="1.0" tiledversion="2018.02.14" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="216">
  <tileset firstgid="1" source="SunnyLand.tsx"/>
  <layer name="Background" width="100" height="100">
   <data encoding="csv">
@@ -316,6 +316,8 @@
  <objectgroup name="LaderCollosion">
   <object id="138" x="800" y="496" width="16" height="128"/>
   <object id="141" x="752" y="384" width="16" height="112"/>
+  <object id="212" x="688" y="96" width="16" height="288"/>
+  <object id="213" x="912" y="240" width="16" height="144"/>
  </objectgroup>
  <objectgroup name="GroundCollision">
   <object id="122" x="1104" y="1456" width="256" height="80"/>
@@ -344,8 +346,6 @@
   </object>
  </objectgroup>
  <objectgroup name="PlatformCollision">
-  <object id="145" x="688" y="96" width="16" height="288"/>
-  <object id="146" x="912" y="240" width="16" height="144"/>
   <object id="156" x="1200" y="592">
    <polyline points="0,0 32,0"/>
   </object>
@@ -489,6 +489,12 @@
   </object>
   <object id="203" x="1584" y="416">
    <polyline points="0,0 -6.5,0"/>
+  </object>
+  <object id="214" x="896" y="240">
+   <polyline points="0,0 16,0"/>
+  </object>
+  <object id="215" x="816" y="384">
+   <polyline points="0,0 16,0"/>
   </object>
  </objectgroup>
 </map>
