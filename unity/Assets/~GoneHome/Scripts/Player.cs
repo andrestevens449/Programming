@@ -7,59 +7,59 @@ namespace GoneHome
     public class Player : MonoBehaviour
     {
         public float acceleration = 10f;
-        public float maxVelocity = 10f;
-        public GameObject deathParticles;
+        public float maxVelocity = 20f;
+        public GameObject deathParticles; // Explosion prefab
 
         private Rigidbody rigid;
-        private Vector3 spawnPoint;
+        private Vector3 spawnPoint; // ADDED THIS
 
+        #region Unity Functions
         // Use this for initialization
         void Start()
         {
             rigid = GetComponent<Rigidbody>();
 
-            spawnPoint = transform.position;
+            spawnPoint = transform.position; // Store starting pos
         }
 
         // Update is called once per frame
         void Update()
         {
-            // Get input
+            // Get input axis
             float inputH = Input.GetAxis("Horizontal");
             float inputV = Input.GetAxis("Vertical");
 
-            // Convert input to Vector3 direction
+            // Create a directional vector with input
             Vector3 inputDir = new Vector3(inputH, 0, inputV);
 
+            // Depending on rotation of camera, change the direction of input
             Transform cam = Camera.main.transform;
             inputDir = Quaternion.AngleAxis(cam.eulerAngles.y, Vector3.up) * inputDir;
 
-            // Add force to Player
+            // Acceleration logic
             rigid.AddForce(inputDir * acceleration);
 
-            Vector3 vel = rigid.velocity;
-            // Check if velocity is too high
-            if (vel.magnitude > maxVelocity)
+            // Check if our velocity goes over maxVelocity
+            if (rigid.velocity.magnitude > maxVelocity)
             {
-                // Cap the velocity
-                vel = vel.normalized * maxVelocity;
+                // Cap the velocity down to max
+                rigid.velocity = rigid.velocity.normalized * maxVelocity;
             }
-            // Apply the velocity
-            rigid.velocity = vel;
         }
+        #endregion
 
-        // Fold Code: CTRL + M + O
-        // Un-Fold Code: CTRL + M + P
-
-        // Resets the player's settings when run
+        #region Custom Functions
         public void Reset()
         {
-            // Play Explosion Particles
+            // Spawn death particles here
             GameObject clone = Instantiate(deathParticles);
-            clone.transform.position = transform.position;
-            // Reset player's position to start position
+            // Set position of particles to player position
+            clone.transform.position = transform.position; 
+            // Reset position back to spawn point
             transform.position = spawnPoint;
-            // Reset player's velocity
+            // Reset the player's velocity
+            rigid.velocity = Vector3.zero;
         }
+        #endregion
     }
 }

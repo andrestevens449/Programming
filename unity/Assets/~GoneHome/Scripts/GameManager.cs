@@ -8,33 +8,27 @@ namespace GoneHome
 {
     public class GameManager : MonoBehaviour
     {
-        // Switches to next scene when called
+        // Switch to next level when this function runs
         public void NextLevel()
         {
-            // Get the current loaded scene
+            // Get active scene
             Scene currentScene = SceneManager.GetActiveScene();
-            // Load the one next to it (using buildIndex)
+            // Load the next scene up using buildIndex
             SceneManager.LoadScene(currentScene.buildIndex + 1);
         }
 
-
-        // Added new levels, GameManager, Player fix and Death
-
-        // Restart the damn level
         public void ResetLevel()
         {
-            // Find all enemies within the game
+            // Grab all enemies
             FollowEnemy[] enemies = FindObjectsOfType<FollowEnemy>();
-            // Loop through all of them
+            // Loop through all enemies and reset them
             for (int i = 0; i < enemies.Length; i++)
             {
-                // Reset them!
+                // Reset
                 enemies[i].Reset();
             }
-
-            // Find the player
+            // Grab the player and reset it
             Player player = FindObjectOfType<Player>();
-            // Reset them!
             player.Reset();
         }
     }

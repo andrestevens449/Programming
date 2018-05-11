@@ -2,62 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Clean code: CTRL + K + D (in that order)
-// Fold code: CTRL + M + O
-// Un-Fold code: CTRL + M + P
+// Clean Code: CTRL + K + D (in that order)
 
 // {} - Braces
 // [] - Brackets
-// () - Parenthesis 
-
-// Level 1 - Classes
-// Level 2 - Functions and Variables
-// Level 3 - Statements
-
+// () - Parenthesis
 namespace Asteroids
 {
     public class Moving : MonoBehaviour
     {
-        public float rotationSpeed = 360f;
-        public float movementSpeed = 10f;
+        // Member Variables
+        public float rotationSpeed;
+        public float movementSpeed;
 
-        void Rotation()
-        {
-            // Check if left is pressed
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                // Rotate left
-                transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-            }
-            // Check if left is pressed
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                // Rotate left
-                transform.Rotate(Vector3.back, rotationSpeed * Time.deltaTime);
-            }
-        }
         void Movement()
         {
-            // Check if up key is pressed
+            // Move up
             if (Input.GetKey(KeyCode.UpArrow))
             {
+                // Move the player up by movementSpeed
                 //Vector3 position = transform.position;
                 //position.y += movementSpeed * Time.deltaTime;
                 //transform.position = position;
                 transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
             }
 
+            // Move down
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
             }
         }
 
+        void Rotation()
+        {
+            // Rotate Right
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Rotate(Vector3.back, rotationSpeed * Time.deltaTime);
+            }
+        }
+
+        // TASK: Make a 'Rotation()' function and put rotation code in it
+
         // Update is called once per frame
         void Update()
         {
             // Call 'Movement()' function
             Movement();
+
             // Call 'Rotation()' function
             Rotation();
         }

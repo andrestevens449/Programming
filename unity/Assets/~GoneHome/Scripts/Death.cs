@@ -9,12 +9,15 @@ namespace GoneHome
     public class Death : MonoBehaviour
     {
         public UnityEvent onDeath;
-
+        
         void OnTriggerEnter(Collider other)
         {
-            if (other.name.Contains("DeathZone") ||
-                other.name.Contains("Enemy"))
+            // Check if the entity came into contact 
+            // with a death object
+            if(other.name.Contains("DeathZone") || 
+               other.name.Contains("Enemy"))
             {
+                // Fire off death event
                 onDeath.Invoke();
             }
         }
