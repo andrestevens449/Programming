@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GoneHome
+namespace Assessment1
 {
     public class PatrolEnemy : MonoBehaviour
     {
