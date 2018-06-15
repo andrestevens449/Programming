@@ -38,6 +38,8 @@ namespace Asteroids
                     shootTimer = 0f;
                 }
             }
+
+             
         }
     }
 }
