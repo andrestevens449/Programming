@@ -7,6 +7,7 @@ using UnityEngine;
 // {} - Braces
 // [] - Brackets
 // () - Parenthesis
+
 namespace Asteroids
 {
     public class Moving : MonoBehaviour
@@ -40,6 +41,11 @@ namespace Asteroids
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Rotate(Vector3.back, rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             }
         }
 

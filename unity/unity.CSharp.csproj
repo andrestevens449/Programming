@@ -144,7 +144,9 @@
     <Compile Include="Assets\~AHundredBalls\Scripts\Spawner.cs" />
     <Compile Include="Assets\~Assessments\Assessment1\scripts\Player.cs" />
     <Compile Include="Assets\~Assessments\Assessment1\scripts\Spawning.cs" />
+    <Compile Include="Assets\~Asteroids\Scripts\AsteroidSpawner.cs" />
     <Compile Include="Assets\~Asteroids\Scripts\Moving.cs" />
+    <Compile Include="Assets\~Asteroids\Scripts\Shooting.cs" />
     <Compile Include="Assets\~Breakout\Scripts\Ball.cs" />
     <Compile Include="Assets\~Breakout\Scripts\Destroy.cs" />
     <Compile Include="Assets\~Breakout\Scripts\Helpers\KeepWithinScreen.cs" />
