@@ -6,7 +6,7 @@ namespace Breakout
 {
     public class Ball : MonoBehaviour
     {
-        public float speed = 5f;
+        public float speed = 5.0f;
 
         private Vector3 velocity;
 
@@ -20,11 +20,10 @@ namespace Breakout
             ContactPoint2D contact = collision.contacts[0];
 
             Vector3 reflect = Vector3.Reflect(velocity, contact.normal);
-
-            velocity = reflect.normalized * speed;
+            
+            velocity = reflect.normalized * velocity.magnitude;
         }
 
-        // Update is called once per frame
         void Update()
         {
             transform.position += velocity * Time.deltaTime;

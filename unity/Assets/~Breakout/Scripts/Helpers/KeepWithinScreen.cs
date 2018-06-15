@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Breakout
 
+namespace Breakout
 {
     [RequireComponent(typeof(Renderer))]
+
     public class KeepWithinScreen : MonoBehaviour
     {
-
         private Renderer rend;
         private Camera cam;
-        private Bounds cambounds;
+        private Bounds camBounds;
         private float camWidth, camHeight;
 
-        // Use this for initialization
+
         void Start()
         {
             cam = Camera.main;
 
             rend = GetComponent<Renderer>();
+
         }
 
         void UpdateCamBounds()
         {
             camHeight = 2f * cam.orthographicSize;
             camWidth = camHeight * cam.aspect;
-            cambounds = new Bounds(cam.transform.position, new Vector3(camWidth, camHeight));
+            camBounds = new Bounds(cam.transform.position, new Vector3(camWidth, camHeight));
 
         }
 
@@ -39,34 +40,28 @@ namespace Breakout
             float halfCamWidth = camWidth * 0.5f;
             float halfCamHeight = camHeight * 0.5f;
 
-            if(pos.x - halfWidth < cambounds.min.x)
+            if(pos.x - halfWidth < camBounds.min.x)
             {
-                pos.x = cambounds.min.x + halfWidth;
+                pos.x = camBounds.min.x + halfWidth;
             }
-
-            if (pos.x + halfWidth > cambounds.max.x)
+            if (pos.x + halfWidth > camBounds.max.x)
             {
-                pos.x = cambounds.max.x - halfWidth;
+                pos.x = camBounds.max.x - halfWidth;
             }
-
-            if (pos.y - halfHeight < cambounds.min.y)
+            if (pos.y - halfHeight < camBounds.min.y)
             {
-                pos.y = cambounds.min.y + halfHeight;
+                pos.y = camBounds.min.y + halfHeight;
             }
-
-            if (pos.y + halfHeight > cambounds.max.y)
+            if (pos.y + halfHeight > camBounds.max.y)
             {
-                pos.y = cambounds.max.y - halfHeight;
+                pos.y = camBounds.max.y - halfHeight;
             }
             return pos;
-
         }
 
-        // Update is called once per frame
         void Update()
         {
             UpdateCamBounds();
-
             transform.position = CheckBounds();
         }
     }
