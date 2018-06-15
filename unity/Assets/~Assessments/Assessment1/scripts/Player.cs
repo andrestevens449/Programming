@@ -11,26 +11,27 @@ public class Player : MonoBehaviour {
     public bool canJump = true;
     public float movementSpeed;
 
+    //this function allows the player to jump onec only when he has hit the ground.
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Ground")
         {
             canJump = true;
         }
-
+        //reset screen, if you hit the walls you reset to the start
         if (col.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene(0);
         }
     }
 
-    // Use this for initialization
+    // Used for giving the player a rigid body.
     void Start ()
     {
        rigid2D = GetComponent<Rigidbody2D>();
     }
 	
-	// Update is called once per frame
+	// allows the player to have a jump force and be able to jump, also to access the integer in unity.
 	void Update ()
     {
         if (Input.GetKey (KeyCode.Space) && canJump == true)

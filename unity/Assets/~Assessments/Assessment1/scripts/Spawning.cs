@@ -10,12 +10,14 @@ public class Spawning : MonoBehaviour
     public GameObject[] walls;
     public GameObject ground;
 
+    //allowing unity to add tags to the objects used to be duplicated, as the game goes on.
     void Start ()
     {
         walls = GameObject.FindGameObjectsWithTag("wall");
         ground = GameObject.FindGameObjectWithTag("Ground");
 	}
 
+    //the raycast needs to hit empty space to be able to build new objects.
     public void FixedUpdate()
     {
         origin = transform.position;
@@ -26,9 +28,11 @@ public class Spawning : MonoBehaviour
         {
             Spawn();
         }
+        //allows me to see the raycast in the editor to see whats happening with the spawning system.
         Debug.DrawRay(origin, rayDirection * rayDistance);
     }
 
+    //spawning the ground and walls to be preset randomly to make a level as you go.
     public void Spawn()
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, 0, 0);
